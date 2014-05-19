@@ -1,0 +1,29 @@
+<%- model_class = Superhero -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
+  <dd><%= @superhero.name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:city) %>:</strong></dt>
+  <dd><%= @superhero.city %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:superpower) %>:</strong></dt>
+  <dd><%= @superhero.superpower %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:superscore) %>:</strong></dt>
+  <dd><%= @superhero.superscore %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:match_id) %>:</strong></dt>
+  <dd><%= @superhero.match_id %></dd>
+</dl>
+
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              superheros_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_superhero_path(@superhero), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              superhero_path(@superhero),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>
