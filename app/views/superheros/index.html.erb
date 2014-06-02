@@ -10,8 +10,6 @@
       <th><%= model_class.human_attribute_name(:city) %></th>
       <th><%= model_class.human_attribute_name(:superpower) %></th>
       <th><%= model_class.human_attribute_name(:superscore) %></th>
-      <th><%= model_class.human_attribute_name(:match_id) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -23,8 +21,6 @@
         <td><%= superhero.city %></td>
         <td><%= superhero.superpower %></td>
         <td><%= superhero.superscore %></td>
-        <td><%= superhero.match_id %></td>
-        <td><%=l superhero.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_superhero_path(superhero), :class => 'btn btn-mini' %>
