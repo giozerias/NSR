@@ -6,31 +6,29 @@
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:hero_a_id) %></th>
-      <th><%= model_class.human_attribute_name(:hero_b_id) %></th>
-      <th><%= model_class.human_attribute_name(:hero_a_score) %></th>
-      <th><%= model_class.human_attribute_name(:hero_b_score) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+      <th>Challenger</th>
+      <th>Challenger Score</th>
+      <th>Opponent</th>
+      <th>Opponent Score</th>
+      <th class="text-success h4"><strong>Winner</strong></th>
     </tr>
   </thead>
   <tbody>
     <% @matches.each do |match| %>
       <tr>
         <td><%= link_to match.id, match_path(match) %></td>
-        <td><%= match.hero_a_id %></td>
-        <td><%= match.hero_b_id %></td>
+        <td><%= Superhero.all[match.hero_a_id].name %></td>
         <td><%= match.hero_a_score %></td>
+        <td><%= Superhero.all[match.hero_b_id].name %></td>
         <td><%= match.hero_b_score %></td>
-        <td><%=l match.created_at %></td>
-        <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_match_path(match), :class => 'btn btn-mini' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      match_path(match),
-                      :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-mini btn-danger' %>
+        <td class="text-success">
+          <strong>
+           <% if match.hero_a_score > match.hero_b_score %><%= Superhero.all[match.hero_a_id].name %>
+           <% elsif match.hero_a_score < match.hero_b_score %><%= Superhero.all[match.hero_b_id].name %>
+           <% elsif match.hero_a_score == match.hero_b_score %><%= 'Tie' %>
+           <% else %><%= '' %>
+           <% end %>
+          </strong>
         </td>
       </tr>
     <% end %>

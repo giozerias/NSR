@@ -1,16 +1,19 @@
 <%= form_for @match, :html => { :class => 'form-horizontal' } do |f| %>
   <div class="control-group">
-    <%= f.label :select_a_superhero, :class => 'control-label' %>
+    <%= f.label 'Challenger', :class => 'control-label' %>
     <div class="controls">
       <%= collection_select(:match, :hero_a_id, 
-      Superhero.all, :id, :name) %>
+      Superhero.all, :id, :name, {prompt: "Select a superhero"}, {style: "color:black;"}) %>
     </div>
   </div>
+  <div>
+    <h2><strong>VS</strong></h2>
+  </div>
   <div class="control-group">
-    <%= f.label :select_an_opponent, :class => 'control-label' %>
+    <%= f.label 'Opponent', :class => 'control-label' %>
     <div class="controls">
       <%= collection_select(:match, :hero_b_id, 
-      Superhero.all, :id, :name) %>
+      Superhero.all, :id, :name, {prompt: "Select a superhero"}, {style: "color:black;"}) %>
     </div>
   </div>
   
