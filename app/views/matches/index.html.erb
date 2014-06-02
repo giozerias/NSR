@@ -17,14 +17,14 @@
     <% @matches.each do |match| %>
       <tr>
         <td><%= link_to match.id, match_path(match) %></td>
-        <td><%= Superhero.all[match.hero_a_id].name %></td>
+        <td><%= Superhero.find(match.hero_a_id).name %></td>
         <td><%= match.hero_a_score %></td>
-        <td><%= Superhero.all[match.hero_b_id].name %></td>
+        <td><%= Superhero.find(match.hero_b_id).name %></td>
         <td><%= match.hero_b_score %></td>
         <td class="text-success">
           <strong>
-           <% if match.hero_a_score > match.hero_b_score %><%= Superhero.all[match.hero_a_id].name %>
-           <% elsif match.hero_a_score < match.hero_b_score %><%= Superhero.all[match.hero_b_id].name %>
+           <% if match.hero_a_score > match.hero_b_score %><%= Superhero.find(match.hero_a_id).name %>
+           <% elsif match.hero_a_score < match.hero_b_score %><%= Superhero.find(match.hero_b_id).name %>
            <% elsif match.hero_a_score == match.hero_b_score %><%= 'Tie' %>
            <% else %><%= '' %>
            <% end %>

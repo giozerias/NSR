@@ -21,28 +21,12 @@ class MatchesController < ApplicationController
   def edit
   end
 
-  def roll_the_dice
-    dice = [1, 2, 3, 4, 5, 6]
-    dice.shuffle.sample
-  end
-
   # POST /matches
   # POST /matches.json
   def create
     @match = Match.new(match_params)
-  
-    hero_a_superscore = Superhero.find(match_params[:hero_a_id]).superscore.to_f 
-    hero_b_superscore = Superhero.find(match_params[:hero_b_id]).superscore.to_f
-
-    hero_a_dice_result = roll_the_dice
-    hero_b_dice_result = roll_the_dice
-
-    hero_a_score = hero_a_dice_result * hero_a_superscore
-    hero_b_score = hero_b_dice_result * hero_b_superscore
-
-    @match[:hero_a_score] = hero_a_score
-    @match[:hero_b_score] = hero_b_score
-
+    @match.fight!
+    
     respond_to do |format|
       if @match.save
         format.html { redirect_to @match, notice: 'Match was successfully created.' }
