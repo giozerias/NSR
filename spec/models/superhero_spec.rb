@@ -31,14 +31,18 @@ describe Superhero do
 	end
 
 	describe "total score" do
-		it "returns the total score" do
-			score = Superhero.total_score(superhero)
-			expect(score).to be_between(1*superhero.superscore, 6*superhero.superscore)
-		end
-
-		it "returns another score for hero provided" do
+		it "returns the score for hero" do
+			#multiply by 10 because superscore is between .1 and 1
+  		#to do: refactor superscore to be an int
 			score = Superhero.total_score(challenger)
-			expect(score).to be_between(1*challenger.superscore, 6*challenger.superscore)
+			expect(score).to be_between(1*(challenger.superscore*10).round, 6*(challenger.superscore*10).round) 
+		end
+	end
+
+	describe "fight" do
+		it "returns the winner" do
+			winner = Superhero.fight(superhero, challenger)
+			expect([superhero,challenger].include?(winner))
 		end
 	end
 end
