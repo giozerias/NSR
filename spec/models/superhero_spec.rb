@@ -25,19 +25,19 @@ describe Superhero do
 
 	describe "roll the dice method" do
 	  it "returns a number between 1 and 6" do
-	  	a_number = superhero.roll_the_dice
+			a_number = Superhero.roll_the_dice
 	  	expect(a_number).to be_between(1,6)
 	  end
 	end
 
 	describe "total score" do
 		it "returns the total score" do
-			score = superhero.total_score
+			score = Superhero.total_score(superhero)
 			expect(score).to be_between(1*superhero.superscore, 6*superhero.superscore)
 		end
 
 		it "returns another score for hero provided" do
-			score = superhero.total_score(challenger)
+			score = Superhero.total_score(challenger)
 			expect(score).to be_between(1*challenger.superscore, 6*challenger.superscore)
 		end
 	end
