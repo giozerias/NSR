@@ -11,15 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140517001953) do
+ActiveRecord::Schema.define(version: 20140617001316) do
 
   create_table "matches", force: true do |t|
     t.integer  "hero_a_id"
     t.integer  "hero_b_id"
-    t.integer  "hero_a_score"
-    t.integer  "hero_b_score"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "winner"
   end
 
   create_table "superheros", force: true do |t|
@@ -29,7 +28,6 @@ ActiveRecord::Schema.define(version: 20140517001953) do
     t.decimal  "superscore", precision: 1, scale: 2
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "match_id"
   end
 
 end
