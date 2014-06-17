@@ -25,7 +25,12 @@ class MatchesController < ApplicationController
   # POST /matches.json
   def create
     @match = Match.new(match_params)
-    @match.fight!
+
+    hero_a = Superhero.find(@match.hero_a_id)
+    hero_b = Superhero.find(@match.hero_b_id)
+
+    winner = Superhero.fight(hero_a, hero_b)
+    @match[:winner] = winner
     
     respond_to do |format|
       if @match.save
