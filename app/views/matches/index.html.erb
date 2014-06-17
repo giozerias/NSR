@@ -7,9 +7,7 @@
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
       <th>Challenger</th>
-      <th>Challenger Score</th>
       <th>Opponent</th>
-      <th>Opponent Score</th>
       <th class="text-success h4"><strong>Winner</strong></th>
     </tr>
   </thead>
@@ -18,16 +16,10 @@
       <tr>
         <td><%= link_to match.id, match_path(match) %></td>
         <td><%= Superhero.find(match.hero_a_id).name %></td>
-        <td><%= match.hero_a_score %></td>
         <td><%= Superhero.find(match.hero_b_id).name %></td>
-        <td><%= match.hero_b_score %></td>
         <td class="text-success">
           <strong>
-           <% if match.hero_a_score > match.hero_b_score %><%= Superhero.find(match.hero_a_id).name %>
-           <% elsif match.hero_a_score < match.hero_b_score %><%= Superhero.find(match.hero_b_id).name %>
-           <% elsif match.hero_a_score == match.hero_b_score %><%= 'Tie' %>
-           <% else %><%= '' %>
-           <% end %>
+           <%= Superhero.find(match.winner).name %>
           </strong>
         </td>
       </tr>
